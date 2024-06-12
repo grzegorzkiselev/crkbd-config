@@ -124,6 +124,7 @@ static void oled_render_layer_state(void)
     }
 }
 
+// Calculate wpm
 bool wpm_keycode_user(uint16_t keycode) {
     if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX) || (keycode >= QK_MODS && keycode <= QK_MODS_MAX)) {
         keycode = keycode & 0xFF;
@@ -137,6 +138,7 @@ bool wpm_keycode_user(uint16_t keycode) {
     return false;
 }
 
+// Print wpm
 static void oled_render_wpm(void) {
   static char wpm_str[4];
 
@@ -147,6 +149,7 @@ static void oled_render_wpm(void) {
   oled_write(wpm_str, false);
 }
 
+// Logo
 void oled_render_logo(void)
 {
     static const char PROGMEM crkbd_logo[] = {
@@ -157,6 +160,7 @@ void oled_render_logo(void)
     oled_write_P(crkbd_logo, false);
 }
 
+// Update display
 bool oled_task_user(void)
 {
     if (is_keyboard_master())
@@ -179,6 +183,7 @@ typedef struct {
     uint8_t step;
 } tap;
 
+// Setup tapping tresholds for different cases
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // case TD(DANCE_CTRL_NAV):
