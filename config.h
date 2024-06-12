@@ -2,12 +2,13 @@
 
 #define EE_HANDS
 
-#define QUICK_TAP_TERM 0
+#define QUICK_TAP_TERM 125
 #define TAPPING_TERM 125
 #define TAPPING_FORCE_HOLD
 #define PERMISSIVE_HOLD
 #define USE_SERIAL_PD2
 #define TAPPING_TERM_PER_KEY
+#define TAPPING_TOGGLE 3
 
 #ifdef RGBLIGHT_ENABLE
     // #define RGBLIGHT_EFFECT_BREATHING
@@ -27,4 +28,7 @@
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
     #define RGBLIGHT_SLEEP
+    #define RGBLIGHT_LAYERS
+    #define RGBLIGHT_SPLIT
+    #define RGBLIGHT_LAYERS_RETAIN_VAL
 #endif

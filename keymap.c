@@ -5,66 +5,55 @@ enum crkbd_layers
     BASE,
     NAVIGATION,
     NUMBERS,
-    DOUBLE_NAVIGATION,
-    MEDIA
+    FN
 };
 
 enum tap_dance_codes {
-  DANCE_CTRL_NAV,
   DANCE_ESC_GRAVE,
+//   DANCE_CTRL_NAV,
 //   DANCE_SPACE_NUMBERS
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_split_3x6_3(
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_TAB,                  KC_Q,            KC_W,      KC_E,      KC_R,      KC_T,                                  KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,           KC_LBRC,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-    MT(MOD_LSFT, KC_F18),           KC_A,            KC_S,      KC_D,      KC_F,      KC_G,                                  KC_H,      KC_J,      KC_K,      KC_L,    KC_SCLN,   MT(MOD_RSFT, KC_QUOT),
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-     TD(DANCE_CTRL_NAV),            KC_Z,            KC_X,      KC_C,      KC_V,      KC_B,                                  KC_N,      KC_M,    KC_COMM,    KC_DOT,   KC_SLSH,          KC_RBRC,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-                                                                         KC_LALT,   KC_LGUI,    MO(2),           KC_SPC,    MO(2),     KC_BSLS
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+           KC_TAB,                  KC_Q,            KC_W,      KC_E,      KC_R,      KC_T,                                           KC_Y,           KC_U,        KC_I,      KC_O,      KC_P,           KC_LBRC,         
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+    MT(MOD_LSFT, KC_F18),           KC_A,            KC_S,      KC_D,      KC_F,      KC_G,                                           KC_H,           KC_J,        KC_K,      KC_L,    KC_SCLN,   MT(MOD_RSFT, KC_QUOT),  
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+           KC_LCTL,                 KC_Z,            KC_X,      KC_C,      KC_V,      KC_B,                                           KC_N,           KC_M,      KC_COMM,    KC_DOT,   KC_SLSH,          KC_RBRC,         
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+                                                                         KC_LALT,   KC_LGUI,     TT(NUMBERS),          KC_SPC,   TT(NAVIGATION),     KC_BSLS                                                              
 ),
 [NAVIGATION] = LAYOUT_split_3x6_3(
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_TRNS,               KC_TRNS,         KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,                               KC_TRNS,   KC_TRNS,    KC_UP,     KC_ESC,   KC_TRNS,          KC_BSPC,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_TRNS,               KC_TRNS,         KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,                               KC_TRNS,   KC_LEFT,   KC_DOWN,   KC_RGHT,    KC_ENT,          KC_TRNS,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_TRNS,               KC_TRNS,         KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,                               KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,   KC_TRNS,           KC_DEL,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-                                                                         KC_TRNS,   KC_TRNS,   KC_TRNS,         KC_TRNS,   KC_TRNS,    KC_TRNS
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+           KC_BSPC,                KC_DEL,          KC_ESC,    KC_UP,     KC_NO,     KC_NO,                                           KC_NO,         KC_TRNS,     KC_UP,     KC_ESC,   KC_BSPC,           KC_DEL,         
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+           KC_LSFT,                KC_ENT,         KC_RGHT,   KC_DOWN,   KC_LEFT,   KC_TRNS,                                          KC_NO,         KC_LEFT,    KC_DOWN,   KC_RGHT,    KC_ENT,          KC_RSFT,         
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+           KC_LCTL,               KC_BRID,         KC_BRIU,   RGB_TOG,   RGB_VAD,   RGB_VAI,                                         KC_MPRV,        KC_MPLY,    KC_MNXT,   KC_MUTE,   KC_VOLD,          KC_VOLU,         
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+                                                                         KC_LALT,   KC_LGUI,   TG(NAVIGATION),         TT(FN),   TG(NAVIGATION),   TT(NUMBERS)                                                            
 ),
 [NUMBERS] = LAYOUT_split_3x6_3(
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-            KC_1,                   KC_2,            KC_3,      KC_4,      KC_5,      KC_6,                                  KC_7,      KC_8,      KC_9,      KC_0,    KC_MINS,           KC_EQL,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_LSFT,         TD(DANCE_ESC_GRAVE),    KC_NO,     KC_NO,     KC_NO,     KC_NO,                                 KC_NO,     KC_NO,     KC_NO,     KC_NO,     KC_NO,            KC_NO,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_LCTL,                TG(3),           KC_NO,     KC_NO,     KC_NO,     KC_SPC,                                MO(3),     KC_NO,     KC_NO,     KC_NO,     KC_NO,            KC_NO,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-                                                                         KC_LALT,   KC_LGUI,   KC_TRNS,          KC_SPC,   KC_TRNS,     MO(4)
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+            KC_1,                   KC_2,            KC_3,      KC_4,      KC_5,      KC_6,                                           KC_7,           KC_8,        KC_9,      KC_0,    KC_MINS,           KC_EQL,         
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+           KC_LSFT,         TD(DANCE_ESC_GRAVE),    KC_NO,     KC_NO,     KC_NO,     KC_NO,                                           KC_NO,          KC_NO,      KC_NO,     KC_NO,     KC_NO,            KC_NO,          
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+           KC_LCTL,            TG(NAVIGATION),      TG(FN),    KC_NO,     KC_NO,     KC_SPC,                                          KC_NO,          KC_NO,      KC_NO,     KC_NO,     KC_NO,            KC_NO,          
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+                                                                         KC_LALT,   KC_LGUI,     TG(NUMBERS),          KC_SPC,       KC_TRNS,      TG(NUMBERS)                                                            
 ),
-[DOUBLE_NAVIGATION] = LAYOUT_split_3x6_3(
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_BSPC,               KC_TRNS,          KC_ESC,    KC_UP,    KC_TRNS,   KC_TRNS,                               KC_TRNS,   KC_TRNS,    KC_UP,     KC_ESC,   KC_TRNS,          KC_BSPC,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_TRNS,                KC_ENT,         KC_RGHT,   KC_DOWN,   KC_LEFT,   KC_TRNS,                               KC_TRNS,   KC_LEFT,   KC_DOWN,   KC_RGHT,    KC_ENT,          KC_TRNS,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_DEL,                KC_BRID,         KC_BRIU,   RGB_TOG,   RGB_VAD,   RGB_VAI,                               KC_MPRV,   KC_MPLY,   KC_MNXT,   KC_MUTE,   KC_VOLD,          KC_VOLU,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-                                                                         KC_TRNS,   KC_TRNS,    TG(3),          KC_TRNS,   KC_TRNS,    KC_TRNS
-),
-[MEDIA] = LAYOUT_split_3x6_3(
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-            KC_F1,                 KC_F2,           KC_F3,     KC_F4,     KC_F5,     KC_F6,                                 KC_F12,    KC_F11,    KC_F10,    KC_F9,     KC_F8,            KC_F7,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_LSFT,                KC_NO,           KC_NO,     KC_NO,     KC_NO,     KC_NO,                                 KC_NO,     KC_NO,     KC_NO,     KC_NO,     KC_NO,            KC_NO,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-           KC_LCTL,               KC_BRID,         KC_BRIU,   RGB_TOG,   RGB_VAD,   RGB_VAI,                               KC_MPRV,   KC_MPLY,   KC_MNXT,   KC_MUTE,   KC_VOLD,          KC_VOLU,
-//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:--------:|:---:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------------------:|
-                                                                         KC_LALT,   KC_LGUI,    KC_NO,           KC_NO,     KC_NO,      KC_NO
+[FN] = LAYOUT_split_3x6_3(
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+            KC_F1,                 KC_F2,           KC_F3,     KC_F4,     KC_F5,     KC_F6,                                           KC_F7,          KC_F8,      KC_F9,     KC_F10,    KC_F11,           KC_F12,         
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+           KC_LSFT,               KC_BTN1,         KC_BTN2,   KC_MS_U,   KC_LSFT,   KC_WH_U,                                         KC_WH_U,        KC_RSFT,    KC_MS_U,   KC_BTN2,   KC_BTN1,          KC_RSFT,         
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+           KC_LCTL,               KC_BTN3,         KC_MS_L,   KC_MS_D,   KC_MS_R,   KC_WH_D,                                         KC_WH_D,        KC_MS_L,    KC_MS_D,   KC_MS_R,   KC_BTN3,          KC_RCTL,         
+//|:---------------------:|:--------------------:|:--------:|:--------:|:--------:|:--------:|:---------------:|:---:|:-------:|:---------------:|:-----------:|:--------:|:--------:|:--------:|:----------------------:|
+                                                                         KC_LALT,   KC_LGUI,       TG(FN),             TG(FN),       KC_RGUI,        KC_RALT                                                              
 )
 };
 
@@ -83,20 +72,20 @@ static void oled_render_layer_state(void)
     oled_write_P(PSTR("LAYER: "), false);
     switch (get_highest_layer(layer_state))
     {
-    case 0:
+    case BASE:
         oled_write_ln_P(PSTR("BASE"), false);
         break;
-    case 1:
+    case NAVIGATION:
         oled_write_ln_P(PSTR("NAVIGATION"), false);
         break;
-    case 2:
+    case NUMBERS:
         oled_write_ln_P(PSTR("NUMBERS"), false);
         break;
-    case 3:
-        oled_write_ln_P(PSTR("NAVIGATON E"), false);
+    case FN:
+        oled_write_ln_P(PSTR("FN"), false);
         break;
     default:
-        oled_write_ln_P(PSTR("MEDIA"), false);
+        oled_write_ln_P(PSTR("UNDEFINED"), false);
         break;
     }
 }
@@ -158,7 +147,7 @@ typedef struct {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case TD(DANCE_CTRL_NAV):
+        // case TD(DANCE_CTRL_NAV):
         case TD(DANCE_ESC_GRAVE):
             return TAPPING_TERM + 75;
         default:
@@ -184,58 +173,59 @@ static tap dance_state = {
 };
 
 /* CTRL_NAV */
-bool process_record_user(uint16_t keycode, keyrecord_t *record)
-{
-    switch (keycode)
-        case KC_UP:
-        case KC_ESC:
-        case KC_BSPC:
-        case KC_LEFT:
-        case KC_DOWN:
-        case KC_RGHT:
-        case KC_ENT:
-        case KC_DEL:
-        {
-            if (record->event.pressed) unregister_code(KC_LCTL);
-        }
+// Escape arrows and other keys in ctrl-navigation mode
+// bool process_record_user(uint16_t keycode, keyrecord_t *record)
+// {
+//     switch (keycode)
+//         case KC_UP:
+//         case KC_ESC:
+//         case KC_BSPC:
+//         case KC_LEFT:
+//         case KC_DOWN:
+//         case KC_RGHT:
+//         case KC_ENT:
+//         case KC_DEL:
+//         {
+//             if (record->event.pressed) unregister_code(KC_LCTL);
+//         }
 
-    return true;
-}
+//     return true;
+// }
 
-void on_DANCE_CTRL_NAV(tap_dance_state_t *state, void *user_data);
-uint8_t DANCE_CTRL_NAV_dance_step(tap_dance_state_t *state);
-void DANCE_CTRL_NAV_finished(tap_dance_state_t *state, void *user_data);
-void DANCE_CTRL_NAV_reset(tap_dance_state_t *state, void *user_data);
+// void on_DANCE_CTRL_NAV(tap_dance_state_t *state, void *user_data);
+// uint8_t DANCE_CTRL_NAV_dance_step(tap_dance_state_t *state);
+// void DANCE_CTRL_NAV_finished(tap_dance_state_t *state, void *user_data);
+// void DANCE_CTRL_NAV_reset(tap_dance_state_t *state, void *user_data);
 
-void on_DANCE_CTRL_NAV(tap_dance_state_t *state, void *user_data) {}
+// void on_DANCE_CTRL_NAV(tap_dance_state_t *state, void *user_data) {}
 
-uint8_t DANCE_CTRL_NAV_dance_step(tap_dance_state_t *state) {
-    if (state->count == 1) {
-        if (state->pressed) return SINGLE_HOLD;
-    } else if (state->count == 2) {
-        if (state->pressed) return DOUBLE_HOLD;
-    } else if (state->count == 3) {
-        if (state->pressed) return TRIPLE_HOLD;
-    }
-    return MORE_TAPS;
-}
+// uint8_t DANCE_CTRL_NAV_dance_step(tap_dance_state_t *state) {
+//     if (state->count == 1) {
+//         if (state->pressed) return SINGLE_HOLD;
+//     } else if (state->count == 2) {
+//         if (state->pressed) return DOUBLE_HOLD;
+//     } else if (state->count == 3) {
+//         if (state->pressed) return TRIPLE_HOLD;
+//     }
+//     return MORE_TAPS;
+// }
 
-void DANCE_CTRL_NAV_finished(tap_dance_state_t *state, void *user_data) {
-    dance_state.step = DANCE_CTRL_NAV_dance_step(state);
-    switch (dance_state.step) {
-        case SINGLE_HOLD: register_code16(KC_LCTL); layer_move(1); break;
-        case DOUBLE_HOLD: register_code16(KC_RCTL); layer_move(1); break;
-        case TRIPLE_HOLD: register_code16(KC_LCTL); break;
-    }
-}
+// void DANCE_CTRL_NAV_finished(tap_dance_state_t *state, void *user_data) {
+//     dance_state.step = DANCE_CTRL_NAV_dance_step(state);
+//     switch (dance_state.step) {
+//         case SINGLE_HOLD: register_code16(KC_LCTL); layer_move(1); break;
+//         case DOUBLE_HOLD: register_code16(KC_RCTL); layer_move(1); break;
+//         case TRIPLE_HOLD: register_code16(KC_LCTL); break;
+//     }
+// }
 
-void DANCE_CTRL_NAV_reset(tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    layer_move(0);
-    unregister_code16(KC_LCTL);
-    unregister_code16(KC_RCTL);
-    dance_state.step = 0;
-}
+// void DANCE_CTRL_NAV_reset(tap_dance_state_t *state, void *user_data) {
+//     wait_ms(10);
+//     layer_move(0);
+//     unregister_code16(KC_LCTL);
+//     unregister_code16(KC_RCTL);
+//     dance_state.step = 0;
+// }
 
 /* ESC_GRAVE */
 void on_DANCE_ESC_GRAVE(tap_dance_state_t *state, void *user_data);
@@ -267,46 +257,7 @@ void DANCE_ESC_GRAVE_reset(tap_dance_state_t *state, void *user_data) {
     dance_state.step = 0;
 }
 
-/* SPACE_NUMBERS */
-// void on_DANCE_SPACE_NUMBERS(tap_dance_state_t *state, void *user_data);
-// uint8_t DANCE_SPACE_NUMBERS_dance_step(tap_dance_state_t *state);
-// void DANCE_SPACE_NUMBERS_finished(tap_dance_state_t *state, void *user_data);
-// void DANCE_SPACE_NUMBERS_reset(tap_dance_state_t *state, void *user_data);
-
-// void on_DANCE_SPACE_NUMBERS(tap_dance_state_t *state, void *user_data) {}
-
-// uint8_t DANCE_SPACE_NUMBERS_dance_step(tap_dance_state_t *state) {
-//     if (state->count == 1) {
-//         if (state->interrupted || !state->pressed) return SINGLE_TAP;
-//         else return SINGLE_HOLD;
-//     } else if (state->count == 2) {
-//         if (state->pressed) return DOUBLE_HOLD;
-//     }
-//     return MORE_TAPS;
-// }
-
-// void DANCE_SPACE_NUMBERS_finished(tap_dance_state_t *state, void *user_data) {
-//     dance_state.step = DANCE_SPACE_NUMBERS_dance_step(state);
-//     switch (dance_state.step) {
-//         case SINGLE_TAP: tap_code16(KC_SPC); break;
-//         case SINGLE_HOLD: register_code16(KC_SPC); break;
-//         case DOUBLE_HOLD: layer_move(2); break;
-//     }
-// }
-
-// void DANCE_SPACE_NUMBERS_reset(tap_dance_state_t *state, void *user_data) {
-//     wait_ms(10);
-//     switch (dance_state.step) {
-//         case SINGLE_TAP:
-//         case SINGLE_HOLD:
-//             unregister_code16(KC_SPC); break;
-//         case DOUBLE_HOLD: layer_move(0); break;
-//     }
-//     dance_state.step = 0;
-// }
-
 tap_dance_action_t tap_dance_actions[] = {
-        [DANCE_CTRL_NAV] = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_CTRL_NAV, DANCE_CTRL_NAV_finished, DANCE_CTRL_NAV_reset),
-        [DANCE_ESC_GRAVE] = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_ESC_GRAVE, DANCE_ESC_GRAVE_finished, DANCE_ESC_GRAVE_reset),
-        // [DANCE_SPACE_NUMBERS] = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_SPACE_NUMBERS, DANCE_SPACE_NUMBERS_finished, DANCE_SPACE_NUMBERS_reset),
+        // [DANCE_CTRL_NAV] = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_CTRL_NAV, DANCE_CTRL_NAV_finished, DANCE_CTRL_NAV_reset),
+        [DANCE_ESC_GRAVE] = ACTION_TAP_DANCE_FN_ADVANCED(on_DANCE_ESC_GRAVE, DANCE_ESC_GRAVE_finished, DANCE_ESC_GRAVE_reset)
 };
