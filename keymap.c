@@ -57,16 +57,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 };
 
-#ifdef OLED_ENABLE
-oled_rotation_t oled_init_user(oled_rotation_t rotation)
+
+#ifdef RGBLIGHT_ENABLE
+#define COLOR_BASE 167,	179, 214
+#define COLOR_NAV 90, 179, 214
+#define COLOR_NUMBERS 255, 130, 224
+#define COLOR_SERVICE 30, 235, 252
+
+const rgblight_segment_t PROGMEM nav_layer[] =
+    RGBLIGHT_LAYER_SEGMENTS(
+        {0, 54, COLOR_NAV});
+const rgblight_segment_t PROGMEM numbers_layer[] =
+    RGBLIGHT_LAYER_SEGMENTS(
+        {0, 54, COLOR_NUMBERS});
+const rgblight_segment_t PROGMEM service_layer[] =
+    RGBLIGHT_LAYER_SEGMENTS(
+        {0, 54, COLOR_SERVICE});
+
+const rgblight_segment_t *const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(nav_layer, numbers_layer, service_layer);
+void keyboard_post_init_user(void)
 {
-    if (!is_keyboard_master())
-    {
-        return OLED_ROTATION_180;
-    }
-    return rotation;
+    rgblight_layers = my_rgb_layers;
+    rgblight_sethsv(COLOR_BASE);
 }
 
+layer_state_t layer_state_set_user(layer_state_t state)
+{
+    rgblight_set_layer_state(0, layer_state_cmp(state, NAVIGATION));
+    rgblight_set_layer_state(1, layer_state_cmp(state, NUMBERS));
+    rgblight_set_layer_state(2, layer_state_cmp(state, FN));
+    return state;
+}
+#endif
+
+#ifdef OLED_ENABLE
+// oled_rotation_t oled_init_user(oled_rotation_t rotation)
+// {
+//     if (!is_keyboard_master())
+//     {
+//         return rotation;
+//     }
+//     return rotation;
+// }
+
+// Print layer names
 static void oled_render_layer_state(void)
 {
     oled_write_P(PSTR("LAYER: "), false);
