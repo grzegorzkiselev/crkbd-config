@@ -84,14 +84,6 @@ layer_state_t layer_state_set_user(layer_state_t state)
 #endif
 
 #ifdef OLED_ENABLE
-// oled_rotation_t oled_init_user(oled_rotation_t rotation)
-// {
-//     if (!is_keyboard_master())
-//     {
-//         return rotation;
-//     }
-//     return rotation;
-// }
 
 // Print layer names
 static void oled_render_layer_state(void)
