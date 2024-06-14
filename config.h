@@ -22,11 +22,11 @@
 #define OLED_TIMEOUT 60000
 #endif
 
-/* animation */
-#define OLED_UP DATE_PROCESS_LIMIT 2
-#define SPLIT_WPM_ENABLE
-/* noitamina */
-/* optimization */
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
-/* noitazimitpo */
+// /* animation */
+// #define OLED_UP DATE_PROCESS_LIMIT 2
+// #define SPLIT_WPM_ENABLE
+// /* noitamina */
+// /* optimization */
+// #define NO_ACTION_MACRO
+// #define NO_ACTION_FUNCTION
+// /* noitazimitpo */
