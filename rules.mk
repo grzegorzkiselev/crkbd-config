@@ -1,7 +1,8 @@
 OLED_ENABLE = yes
 OLED_DRIVER = SSD1306
-WPM_ENABLE = yes
+# WPM_ENABLE = yes
 RGBLIGHT_ENABLE = yes
+MOUSEKEY_ENABLE = yes
 
 # optimization
 LTO_ENABLE = yes
