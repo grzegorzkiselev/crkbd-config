@@ -5,7 +5,7 @@ const uint16_t PROGMEM cmd_right[] = {KC_SPC, KC_N, COMBO_END};
 const uint16_t PROGMEM navigation_left[] = {MO(2), KC_LGUI, COMBO_END};
 const uint16_t PROGMEM numbers_right[] = {MO(1), KC_SPC, COMBO_END};
 const uint16_t PROGMEM fn_left[] = {KC_LALT, KC_V, COMBO_END};
-const uint16_t PROGMEM fn_right[] = {KC_BSLS, KC_M, COMBO_END};
+const uint16_t PROGMEM fn_right[] = {MT(MOD_RALT, KC_BSLS), KC_M, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(space_left, KC_SPC),
@@ -32,40 +32,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef OLED_ENABLE
 
-void oled_render_layer_state(void) {
-    switch (get_highest_layer(layer_state)) {
-        case BASE:
-            oled_write_ln_P(PSTR(""), false);
-            break;
-        case NAVIGATION:
-            oled_write_ln_P(PSTR("NAVIGATION"), false);
-            break;
-        case NUMBERS:
-            oled_write_ln_P(PSTR("NUMBERS"), false);
-            break;
-        case FN:
-            oled_write_ln_P(PSTR("FN"), false);
-            break;
+    void oled_render_layer_state(void) {
+        switch (get_highest_layer(layer_state)) {
+            case BASE:
+                oled_write_ln_P(PSTR(""), false);
+                break;
+            case NAVIGATION:
+                oled_write_ln_P(PSTR("NAVIGATION"), false);
+                break;
+            case NUMBERS:
+                oled_write_ln_P(PSTR("NUMBERS"), false);
+                break;
+            case FN:
+                oled_write_ln_P(PSTR("FN"), false);
+                break;
+        }
     }
-}
 
-void render_mod_status(void) {
-    const uint8_t modifiers = get_mods() | get_oneshot_mods();
+    void render_mod_status(void) {
+        const uint8_t modifiers = get_mods() | get_oneshot_mods();
 
-    if (modifiers & MOD_MASK_SHIFT) { oled_write_P(PSTR("SFT "), false); }
-    if (modifiers & MOD_MASK_CTRL) { oled_write_P(PSTR("CTRL "), false); }
-    if (modifiers & MOD_MASK_ALT) { oled_write_P(PSTR("OPT "), false); }
-    if (modifiers & MOD_MASK_GUI) { oled_write_P(PSTR("CMD "), false); }
+        if (modifiers & MOD_MASK_SHIFT) { oled_write_P(PSTR("SFT "), false); }
+        if (modifiers & MOD_MASK_CTRL) { oled_write_P(PSTR("CTRL "), false); }
+        if (modifiers & MOD_MASK_ALT) { oled_write_P(PSTR("OPT "), false); }
+        if (modifiers & MOD_MASK_GUI) { oled_write_P(PSTR("CMD "), false); }
 
-    oled_write_ln_P(PSTR(" "), false);
-}
-
-bool oled_task_user(void) {
-    if (is_keyboard_master()) {
-        oled_render_layer_state();
-        render_mod_status();
+        oled_write_ln_P(PSTR(" "), false);
     }
-    return false;
-}
+
+    bool oled_task_user(void) {
+        if (is_keyboard_master()) {
+            oled_render_layer_state();
+            render_mod_status();
+        }
+        return false;
+    }
 
 #endif
