@@ -4,8 +4,7 @@
 
 #define TAPPING_TERM 140
 
-#define FLOW_TAP_TERM 150
-#define PERMISSIVE_HOLD
+#define HOLD_ON_OTHER_KEY_PRESS
 
 #define TAP_CODE_DELAY 5
 
