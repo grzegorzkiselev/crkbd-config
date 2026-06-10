@@ -1,11 +1,8 @@
 #pragma once
 
 #define EE_HANDS
-
-#define TAPPING_TERM 140
-
-#define HOLD_ON_OTHER_KEY_PRESS
-
+#define PERMISSIVE_HOLD
+#define TAPPING_TERM 150
 #define TAP_CODE_DELAY 5
 
 #ifdef OLED_ENABLE
