@@ -21,7 +21,7 @@ layers:
     - .
     - /
     - {t: ']', h: MOD_RCTL}
-    - LALT
+    - {t: '`', h: MOD_LALT}
     - LGUI
     - L2
     - L1
@@ -91,4 +91,3 @@ combos:
   - {p: [39, 40], k: "L2", l: ["L0"]}
   - {p: [30, 40], k: "RGUI", l: ["L0"]}
   - {p: [31, 41], k: "L3", l: ["L0"]}
-  
